@@ -1,0 +1,43 @@
+{
+  "users": [
+    {
+      "_id": "admin-1",
+      "name": "Zentora Admin",
+      "email": "pandeyaman5283@gmail.com",
+      "password": "$2b$10$LrINYn6ZXV.E0PeKQJ8Vie0B7vxSsNR/QuVwuq3bKk4tWL.Xo./I6",
+      "type": "admin",
+      "phone": "+91 9082115064",
+      "location": "India",
+      "bio": "Platform administrator",
+      "credit": 0,
+      "status": true
+    },
+    {
+      "_id": "2bb6c9ce-c871-4925-8859-2969cd02495c",
+      "name": "Aman Pandey Pandey",
+      "email": "pandeyaman5283@gmail.com",
+      "password": "$2b$10$8KqjoLLQsLD5p5IG5N/Rdu1bPfo4LPl7dihrutIvJTtpdLZooDd2u",
+      "type": "client",
+      "phone": "",
+      "location": "",
+      "bio": "",
+      "credit": 0,
+      "status": true
+    },
+    {
+      "_id": "4d4fb269-95ac-45c5-878a-c20b38201208",
+      "name": "tata",
+      "email": "tata@gmail.com",
+      "password": "$2b$10$c6CDa1CoWpwAHCVC1P1cnuMq5qL0w4Xk.ci5djG6IUr20bg0SfkrG",
+      "type": "user",
+      "phone": "",
+      "location": "",
+      "bio": "",
+      "credit": 10,
+      "status": true
+    }
+  ],
+  "plans": [],
+  "projects": [],
+  "bids": []
+}
