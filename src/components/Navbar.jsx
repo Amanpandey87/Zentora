@@ -46,7 +46,7 @@ const CommonMenu = () => {
                 <div className="col-auto">
                   <a href="mailto:pandeyaman5283@gmail.com" className="top-bar-link">
                     <FaEnvelope className="top-bar-icon" />
-                    Email: pandeyaman5183@gmail.com
+                    Email: pandeyaman5283@gmail.com
                   </a>
                 </div>
               </div>
@@ -272,7 +272,7 @@ const ClientMenu = () => {
             <div className="col-12 col-sm-7">
               <div className="row align-items-center g-2 g-sm-3">
                 <div className="col-auto">
-                  <a href="tel:+18009368672" className="top-bar-link">
+                    <a href="tel:+919082115064" className="top-bar-link">
                     <FaPhoneAlt className="top-bar-icon" />
                     Call: +91 (9082115064) ZENTORA
                   </a>
@@ -281,9 +281,9 @@ const ClientMenu = () => {
                   <span className="top-bar-sep">|</span>
                 </div>
                 <div className="col-auto">
-                  <a href="mailto:support@zentora.com" className="top-bar-link">
+                  <a href="mailto:pandeyaman5283@gmail.com" className="top-bar-link">
                     <FaEnvelope className="top-bar-icon" />
-                    Email:pandeyaman5183.com
+                    Email: pandeyaman5283@gmail.com
                   </a>
                 </div>
               </div>
@@ -382,7 +382,7 @@ const UserMenu = () => {
             <div className="col-12 col-sm-7">
               <div className="row align-items-center g-2 g-sm-3">
                 <div className="col-auto">
-                  <a href="tel:+9082115064" className="top-bar-link">
+                  <a href="tel:+919082115064" className="top-bar-link">
                     <FaPhoneAlt className="top-bar-icon" />
                     Call: +91 (9082115064) ZENTORA
                   </a>
@@ -391,9 +391,9 @@ const UserMenu = () => {
                   <span className="top-bar-sep">|</span>
                 </div>
                 <div className="col-auto">
-                  <a href="mailto:support@zentora.com" className="top-bar-link">
+                  <a href="mailto:pandeyaman5283@gmail.com" className="top-bar-link">
                     <FaEnvelope className="top-bar-icon" />
-                    Email: pandeyaman5183@gmail.com
+                    Email: pandeyaman5283@gmail.com
                   </a>
                 </div>
               </div>

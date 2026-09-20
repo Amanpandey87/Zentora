@@ -20,8 +20,13 @@ const ContactUs = () => {
               </div>
 
               <div className='contact-box contact-box-right'>
-                <div className='contact-label'>Call us via</div>
-                <a href='tel:902115063' className='contact-link'>902115063</a>
+                <div className='contact-label'>Message us on WhatsApp</div>
+                <a href='https://wa.me/919082115064' target='_blank' rel='noreferrer' className='contact-link'>
+                  +91 9082115064
+                </a>
+                <a href='https://wa.me/919082115064' target='_blank' rel='noreferrer' className='contact-btn'>
+                  Open WhatsApp
+                </a>
               </div>
             </div>
           </div>

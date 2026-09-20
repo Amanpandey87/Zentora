@@ -4,6 +4,7 @@ import { FaCheck, FaTimes } from 'react-icons/fa'
 import Swal from 'sweetalert2'
 const UserPlans = () => {
   const [data, setData] = useState([])
+  const [processingPlanId, setProcessingPlanId] = useState(null)
   async function fetchData() {
     const token = localStorage.getItem('token');
     const res = await axios.get('http://localhost:9000/admin-get-plans', {
@@ -15,20 +16,30 @@ const UserPlans = () => {
     void Promise.resolve().then(fetchData)
   }, [])
   const handlePurchasePlan = async (item) => {
-    const info = JSON.parse(localStorage.getItem('info'));
+    const info = JSON.parse(localStorage.getItem('info') || 'null');
     const userId = info?._id;
     const planId = item?._id;
+    if (!userId || !planId) {
+      await Swal.fire('Payment', 'Please sign in again before purchasing a plan.', 'error');
+      return;
+    }
+
+    setProcessingPlanId(planId);
     try {
       const token = localStorage.getItem('token');
       const headers = { Authorization: `Bearer ${token}` };
       const orderResponse = await axios.post('http://localhost:9000/user-create-payment-order', { planId }, { headers });
-      await new Promise((resolve, reject) => {
+      if (!document.querySelector('script[data-razorpay-checkout]')) {
+        await new Promise((resolve, reject) => {
         const script = document.createElement('script');
         script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+        script.dataset.razorpayCheckout = 'true';
         script.onload = resolve;
         script.onerror = reject;
         document.body.appendChild(script);
-      });
+        });
+      }
+      if (!window.Razorpay) throw new Error('Razorpay checkout could not be loaded');
       const order = orderResponse.data.result;
       const checkout = new window.Razorpay({
         key: order.keyId,
@@ -39,6 +50,8 @@ const UserPlans = () => {
         order_id: order.id,
         handler: async (payment) => {
           const response = await axios.post('http://localhost:9000/user-verify-payment', { ...payment, userId, planId }, { headers });
+          if (!response.data.success) throw new Error(response.data.message || 'Payment verification failed');
+          localStorage.setItem('info', JSON.stringify(response.data.result));
           await Swal.fire('Payment', response.data.message, 'success');
         },
         prefill: { email: info?.email, contact: info?.phone },
@@ -47,6 +60,8 @@ const UserPlans = () => {
       checkout.open();
     } catch (error) {
       Swal.fire('Payment', error.response?.data?.message || 'Unable to start payment', 'error');
+    } finally {
+      setProcessingPlanId(null);
     }
   }
 
@@ -111,8 +126,8 @@ const UserPlans = () => {
                   </ul>
                 </div>
                 <div className="pricing-card-bottom">
-                  <button onClick={() => handlePurchasePlan(item)} type="button" className="plan-btn plan-btn-solid">
-                    Get Plan
+                  <button onClick={() => handlePurchasePlan(item)} type="button" className="plan-btn plan-btn-solid" disabled={processingPlanId === item?._id}>
+                    {processingPlanId === item?._id ? 'Opening payment...' : 'Get Plan'}
                   </button>
                   <p className="plan-footer">50 credits included · 1 credit per bid</p>
                 </div>

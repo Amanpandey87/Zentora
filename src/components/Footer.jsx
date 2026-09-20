@@ -31,7 +31,10 @@ const Footer = () => {
             </p>
             <p className="footer-contact"><b>Add:</b> 70-80 Upper St Norwich NR2</p>
             <p className="footer-contact"><b>Call:</b> +91 9082115064</p>
-            <p className="footer-contact"><b>Email:</b> pandeyaman5283@gmail.com</p>
+            <p className="footer-contact">
+              <b>Email:</b>{' '}
+              <a href="mailto:pandeyaman5283@gmail.com">pandeyaman5283@gmail.com</a>
+            </p>
           </div>
 
           <div className="col-lg-3 col-md-6">

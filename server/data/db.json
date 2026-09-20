@@ -37,7 +37,32 @@
       "status": true
     }
   ],
-  "plans": [],
+  "plans": [
+    {
+      "_id": "plan-starter",
+      "name": "STARTER",
+      "credits": 10,
+      "price": 199,
+      "tagline": "A simple start for new freelancers",
+      "popular": false
+    },
+    {
+      "_id": "plan-growth",
+      "name": "GROWTH",
+      "credits": 50,
+      "price": 699,
+      "tagline": "For freelancers growing their pipeline",
+      "popular": true
+    },
+    {
+      "_id": "plan-pro",
+      "name": "PRO",
+      "credits": 120,
+      "price": 1299,
+      "tagline": "More opportunities, more flexibility",
+      "popular": false
+    }
+  ],
   "projects": [],
   "bids": []
 }

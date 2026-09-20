@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken';
 import { MongoClient } from 'mongodb';
 import nodemailer from 'nodemailer';
 import Razorpay from 'razorpay';
+import { Buffer } from 'node:buffer';
 import crypto from 'node:crypto';
 import { randomUUID } from 'node:crypto';
 import { promises as fs } from 'node:fs';
@@ -31,8 +32,11 @@ const mailer = smtpConfigured ? nodemailer.createTransport({
   secure: Number(globalThis.process.env.SMTP_PORT || 587) === 465,
   auth: { user: globalThis.process.env.SMTP_USER, pass: globalThis.process.env.SMTP_PASSWORD },
 }) : null;
-const razorpay = globalThis.process?.env?.RAZORPAY_KEY_ID && globalThis.process?.env?.RAZORPAY_KEY_SECRET
-  ? new Razorpay({ key_id: globalThis.process.env.RAZORPAY_KEY_ID, key_secret: globalThis.process.env.RAZORPAY_KEY_SECRET })
+const razorpayKeyId = globalThis.process?.env?.RAZORPAY_KEY_ID;
+const razorpayKeySecret = globalThis.process?.env?.RAZORPAY_KEY_SECRET;
+const razorpayConfigured = razorpayKeyId && razorpayKeySecret && !razorpayKeyId.startsWith('REPLACE_') && !razorpayKeySecret.startsWith('REPLACE_');
+const razorpay = razorpayConfigured
+  ? new Razorpay({ key_id: razorpayKeyId, key_secret: razorpayKeySecret })
   : null;
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dbPath = path.join(__dirname, 'data', 'db.json');
@@ -102,9 +106,11 @@ async function connectMongo() {
       { upsert: true },
     );
     const current = await readDb();
+    const jsonDb = JSON.parse(await fs.readFile(dbPath, 'utf8'));
     if (!current.users.length) {
-      const jsonDb = JSON.parse(await fs.readFile(dbPath, 'utf8'));
       await writeDb(jsonDb);
+    } else if (!current.plans.length && jsonDb.plans.length) {
+      await mongoDb.collection('plans').insertMany(jsonDb.plans);
     }
     console.log(`MongoDB connected: ${mongoDb.databaseName}`);
   } catch (error) {
