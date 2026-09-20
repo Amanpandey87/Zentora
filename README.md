@@ -1,4 +1,6 @@
-Zentora Web
+# Zentora
+
+Zentora is a full-stack freelance marketplace connecting clients with freelancers.
 
 Zentora is a React marketplace frontend connecting clients with freelancers.
 
