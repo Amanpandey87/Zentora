@@ -5,7 +5,7 @@ const AdminBids = () => {
   const [data, setData] = useState([])
 
   async function fetchData() {
-    const res = await axios.get('http://localhost:9000/admin-biding-list')
+    const res = await axios.get('/admin-biding-list')
     setData(res?.data?.result || [])
   }
 

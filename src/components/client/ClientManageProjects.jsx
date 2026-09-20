@@ -9,7 +9,7 @@ const ClientManageProjects = () => {
   async function fetchData() {
     const info = JSON.parse(localStorage.getItem('info'));
     const clientId = info?._id;
-    const res = await axios.get(`http://localhost:9000/client-project-list?clientId=${clientId}`)
+    const res = await axios.get(`/client-project-list?clientId=${clientId}`)
     setData(res?.data?.result)
   }
   useEffect(() => {

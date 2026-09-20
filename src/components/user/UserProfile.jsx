@@ -88,7 +88,7 @@ const UserProfile = () => {
       npassword: data.npassword || '',
     }
 
-    const res = await axios.put('http://localhost:9000/user-profile-update', finalData)
+    const res = await axios.put('/user-profile-update', finalData)
 
     if (res?.data?.success === true) {
       localStorage.setItem(

@@ -6,7 +6,7 @@ const AdminClients = () => {
   const [data, setData] = useState([]);
 
   async function fetchData() {
-    const res = await axios.get("http://localhost:9000/admin-clients-list");
+    const res = await axios.get('/admin-clients-list');
       setData(res?.data?.result);
   }
 

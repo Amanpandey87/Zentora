@@ -79,7 +79,7 @@ const ClientProfile = () => {
       npassword: data.npassword || '',
     }
 
-    const res = await axios.put('http://localhost:9000/client-profile-update', finalData)
+    const res = await axios.put('/client-profile-update', finalData)
 
     if (res?.data?.success === true) {
       localStorage.setItem(

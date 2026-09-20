@@ -22,7 +22,7 @@ const Login = () => {
   });
 
   const handleLogin = async (data) => {
-    const res = await axios.post('http://localhost:9000/login', data);
+    const res = await axios.post('/login', data);
     if (res?.data?.success == true) {
       localStorage.setItem("info", JSON.stringify(res?.data?.result))
       localStorage.setItem("token", res?.data?.token)

@@ -5,7 +5,7 @@ import AdminProjects from './AdminProjects';
 const AdminDashboard = () => {
   const [data, setData] = useState('');
   async function fetchData() {
-    const res = await axios.get('http://localhost:9000/admin-stats')
+    const res = await axios.get('/admin-stats')
     setData(res?.data?.result)
   }
 

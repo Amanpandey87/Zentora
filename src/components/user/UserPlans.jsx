@@ -7,7 +7,7 @@ const UserPlans = () => {
   const [processingPlanId, setProcessingPlanId] = useState(null)
   async function fetchData() {
     const token = localStorage.getItem('token');
-    const res = await axios.get('http://localhost:9000/admin-get-plans', {
+    const res = await axios.get('/admin-get-plans', {
       headers: { Authorization: `Bearer ${token}` },
     })
     setData(res?.data?.result)
@@ -28,7 +28,7 @@ const UserPlans = () => {
     try {
       const token = localStorage.getItem('token');
       const headers = { Authorization: `Bearer ${token}` };
-      const orderResponse = await axios.post('http://localhost:9000/user-create-payment-order', { planId }, { headers });
+      const orderResponse = await axios.post('/user-create-payment-order', { planId }, { headers });
       if (!document.querySelector('script[data-razorpay-checkout]')) {
         await new Promise((resolve, reject) => {
         const script = document.createElement('script');
@@ -49,7 +49,7 @@ const UserPlans = () => {
         description: `${item.name} plan`,
         order_id: order.id,
         handler: async (payment) => {
-          const response = await axios.post('http://localhost:9000/user-verify-payment', { ...payment, userId, planId }, { headers });
+          const response = await axios.post('/user-verify-payment', { ...payment, userId, planId }, { headers });
           if (!response.data.success) throw new Error(response.data.message || 'Payment verification failed');
           localStorage.setItem('info', JSON.stringify(response.data.result));
           await Swal.fire('Payment', response.data.message, 'success');

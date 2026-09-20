@@ -6,12 +6,12 @@ const AdminUsers = () => {
   const [data, setData] = useState([]);
 
   async function fetchData() {
-    const res = await axios.get("http://localhost:9000/admin-users-list");
+    const res = await axios.get('/admin-users-list');
       setData(res?.data?.result);
   }
 
   const updateStatus = async (item) => {
-    await axios.put("http://localhost:9000/admin-user-status", {
+    await axios.put('/admin-user-status', {
       userId: item._id,
       status: !item.status,
     });
@@ -19,7 +19,7 @@ const AdminUsers = () => {
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:9000/admin-delete-user/${id}`);
+    await axios.delete(`/admin-delete-user/${id}`);
     fetchData();
   };
 

@@ -9,7 +9,7 @@ const UserDashboard = () => {
 
   const fetchData = useCallback(async () => {
     const userId = info?._id
-    const res = await axios.get(`http://localhost:9000/user-stats?userId=${userId}`)
+    const res = await axios.get(`/user-stats?userId=${userId}`)
     setStats(res?.data?.result)
   }, [info?._id])
 

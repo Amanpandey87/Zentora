@@ -5,7 +5,7 @@ const AdminProjects = () => {
   const [data, setData] = useState([]);
 
   async function fetchData() {
-      const res = await axios.get("http://localhost:9000/admin-project-list");
+      const res = await axios.get('/admin-project-list');
       setData(res?.data?.result);
   }
 

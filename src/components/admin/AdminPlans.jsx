@@ -17,7 +17,7 @@ const schema = yup.object({
 const AdminPlans = () => {
   const [data, setData] = useState([]);
   async function fetchData() {
-    const res = await axios.get('http://localhost:9000/admin-get-plans');
+    const res = await axios.get('/admin-get-plans');
     setData(res?.data?.result)
   }
   useEffect(() => {
@@ -34,7 +34,7 @@ const AdminPlans = () => {
   });
 
   const onSubmit = async (data) => {
-    const res = await axios.post('http://localhost:9000/admin-create-plan', data);
+    const res = await axios.post('/admin-create-plan', data);
     if (res?.data?.success == true) {
       Swal.fire({
         title: "Plan",
@@ -53,7 +53,7 @@ const AdminPlans = () => {
   }
 
   const deletePlan = async (id) => {
-    await axios.delete(`http://localhost:9000/admin-delete-plan/${id}`);
+    await axios.delete(`/admin-delete-plan/${id}`);
     fetchData();
   }
 

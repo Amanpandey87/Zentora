@@ -8,7 +8,7 @@ const ClientReviewBids = () => {
   const [data, setData] = useState([])
   const fetchData = useCallback(async () => {
     const projectId = location?.state?._id
-    const res = await axios.get(`http://localhost:9000/client-biding-list?projectId=${projectId}`)
+    const res = await axios.get(`/client-biding-list?projectId=${projectId}`)
     setData(res?.data?.result)
   }, [location?.state?._id])
 
@@ -19,7 +19,7 @@ const ClientReviewBids = () => {
   const handleStatus = async (status, userId) => {
     const projectId = location?.state?._id;
     const data = { projectId, status, userId }
-    const res = await axios.put('http://localhost:9000/client-biding-action', data);
+    const res = await axios.put('/client-biding-action', data);
     if (res?.data?.success == true) {
       Swal.fire({
         title: "Actions",
